@@ -1,0 +1,182 @@
+/* ---------- GLOBAL RESET ---------- */
+* { box-sizing: border-box; margin:0; padding:0; font-family: "Inter", "Poppins", sans-serif; }
+html,body { height:100%; }
+body {
+  background: #081223;
+  color: #e9f6ff;
+  min-height:100vh;
+  position:relative;
+  overflow-x: hidden;
+}
+
+/* ---------- BACKGROUND LAYERS ---------- */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  transition: background 0.6s ease;
+  pointer-events: none;
+}
+
+/* animated elements will be positioned inside :before / :after as needed */
+#bg.clear {
+  background: linear-gradient(180deg, #0f2740 0%, #1b3b5a 60%, #0b1d2b 100%);
+}
+#bg.clouds {
+  background: linear-gradient(180deg, #2b3b4a 0%, #1e2b36 60%, #0b1720 100%);
+}
+#bg.rain {
+  background: linear-gradient(180deg, #1b2630 0%, #111820 60%, #071018 100%);
+}
+#bg.snow {
+  background: linear-gradient(180deg, #223344 0%, #eaf6ff 60%, #dff4ff 100%);
+}
+#bg.thunderstorm {
+  background: linear-gradient(180deg, #0b1220 0%, #08101a 60%, #02040a 100%);
+}
+#bg.mist {
+  background: linear-gradient(180deg, #2b3640 0%, #162029 60%, #0b1216 100%);
+}
+
+/* small animated overlays */
+#bg::after {
+  content: "";
+  position: absolute;
+  inset:0;
+  background-image: radial-gradient( rgba(255,255,255,0.02) 1px, transparent 1px);
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* ---------- NAV ---------- */
+.nav {
+  position: fixed;
+  z-index: 30;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 18px;
+  width: calc(100% - 60px);
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(2,8,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+.brand { font-weight:700; letter-spacing:0.6px; color:#e8f7ff; font-size:18px; }
+.nav nav a {
+  color: rgba(233,246,255,0.85);
+  margin-left:18px; text-decoration:none; padding:8px 12px; border-radius:10px;
+  transition: all .18s ease;
+}
+.nav nav a:hover { transform: translateY(-3px); background: rgba(255,255,255,0.03); }
+.nav nav a.active { background: linear-gradient(90deg,#00e0ff55,#7a6bff33); box-shadow: 0 6px 20px rgba(90,120,255,0.08); }
+
+/* ---------- MAIN WRAP ---------- */
+.wrap {
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 120px auto 60px;
+  padding: 0 24px;
+}
+
+/* ---------- PANELS ---------- */
+.panel { margin-bottom: 28px; padding: 18px; border-radius: 12px; }
+.search-panel { text-align:center; color: #eaf6ff; margin-bottom: 28px; }
+.search-panel h1 { font-size: 28px; margin-bottom: 8px; letter-spacing: -0.4px; }
+.lead { color: #cfefff; margin-bottom: 18px; opacity:0.9; }
+
+/* search input */
+.search { display:flex; justify-content:center; gap:10px; align-items:center; }
+.search input {
+  width: 380px; max-width: 60vw; padding:12px 14px; border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.03); color: #eaf6ff; outline:none; font-size:15px;
+  transition: transform .12s;
+}
+.search input:focus { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,160,255,0.06); }
+.search button {
+  padding: 11px 14px; border-radius: 10px; border:none; cursor:pointer; font-weight:600;
+  background: linear-gradient(90deg,#00e0ff,#7a6bff);
+  color: #041029; box-shadow: 0 8px 30px rgba(122,107,255,0.12);
+}
+#geoBtn { background: rgba(255,255,255,0.04); color: #eaf6ff; font-size:16px; padding:10px 12px; }
+
+/* message */
+.msg { margin-top: 12px; color: #ffd8d8; }
+
+/* ---------- Current card ---------- */
+.current-card {
+  display:flex;
+  gap: 20px;
+  border-radius: 16px;
+  padding: 18px;
+  align-items:center;
+  justify-content:space-between;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 40px rgba(2,8,23,0.6);
+}
+.current-card .left { flex:1; text-align:left; padding-left:12px; }
+.current-card .right { width:160px; text-align:center; }
+.city { font-size:20px; font-weight:700; margin-bottom:6px; color:#f2fbff; }
+.desc { font-size:16px; color:#cdeeff; margin-bottom:8px; text-transform:capitalize; }
+.temp { font-size:48px; font-weight:800; color:#fff; margin-bottom:8px; }
+.meta { display:flex; gap:12px; color:#cfe6f8; font-size:14px; }
+
+/* icon */
+.current-card img { width:120px; height:120px; object-fit:contain; filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5)); }
+
+/* ---------- Forecast grid ---------- */
+.forecast-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap:14px;
+  margin-top:14px;
+}
+.forecast-card {
+  border-radius:12px; padding:12px; text-align:center;
+  background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
+  transition: transform .18s, box-shadow .18s;
+}
+.forecast-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(2,8,23,0.6); }
+.forecast-card .day { font-weight:700; margin-bottom:6px; color:#f0fbff; }
+.forecast-card img { width:60px; height:60px; margin-bottom:6px; }
+.forecast-card .t { font-size:18px; font-weight:700; margin-bottom:6px; }
+.forecast-card .small { font-size:13px; color:#cfe6f8; }
+
+/* ---------- LOADER ---------- */
+.loader {
+  position: fixed; inset: 0; display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:center;
+  background: rgba(2,6,12,0.45); z-index:40;
+}
+.hidden { display:none; }
+.spinner {
+  width:68px; height:68px; border-radius:50%;
+  border:6px solid rgba(255,255,255,0.06); border-top-color: rgba(122,107,255,0.95);
+  animation: spin 1s linear infinite;
+  box-shadow: 0 10px 30px rgba(122,107,255,0.09), inset 0 3px 10px rgba(255,255,255,0.02);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-text { color:#dfefff; font-weight:700; }
+
+/* ---------- FOOTER ---------- */
+.footer { text-align:center; color:#bcd8ea; margin:36px 0 80px; opacity:0.9; z-index:10; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:720px) {
+  .current-card { flex-direction:column; align-items:center; gap:10px; padding:14px; }
+  .current-card .right { width:120px; }
+  .search input { width: 60vw; }
+  .nav { left:12px; transform:none; width: calc(100% - 24px); }
+}
+
+
+
+

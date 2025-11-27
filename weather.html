@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather — Forecast & Live</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="bg" class="bg clear"></div>
+
+  <div id="loader" class="loader hidden">
+    <div class="spinner"></div>
+    <div class="loader-text">Fetching weather...</div>
+  </div>
+
+  <header class="nav">
+    <div class="brand">ClarityWeather</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#weather" class="active">Weather</a>
+      <a href="#forecast">Forecast</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <section id="home" class="panel search-panel">
+      <h1>Weather Forecast — Adaptive Theme</h1>
+      <p class="lead">Type a city name (example: Bengaluru, Delhi, Mumbai)</p>
+
+      <div class="search">
+        <input id="cityInput" placeholder="Enter city name" type="text" />
+        <button id="searchBtn">Search</button>
+        <button id="geoBtn" title="Use my location">📍</button>
+      </div>
+
+      <p id="msg" class="msg"></p>
+    </section>
+
+    <section id="weather" class="panel weather-panel hidden">
+      <div class="card current-card">
+        <div class="left">
+          <div id="cityName" class="city">—</div>
+          <div id="desc" class="desc">—</div>
+          <div id="temp" class="temp">—°C</div>
+
+          <div class="meta">
+            <span id="feels">Feels: —°C</span>
+            <span id="humidity">Humidity: —%</span>
+            <span id="wind">Wind: — m/s</span>
+          </div>
+        </div>
+
+        <div class="right">
+          <img id="icon" alt="weather icon" src="" />
+        </div>
+      </div>
+    </section>
+
+    <section id="forecast" class="panel forecast-panel hidden">
+      <h2>5-day Forecast</h2>
+      <div id="forecastCards" class="forecast-grid"></div>
+    </section>
+
+    <section id="about" class="panel about-panel">
+      <h2>About — ClarityWeather</h2>
+      <p>
+        This demo uses OpenWeatherMap current & 5-day forecast APIs. Background changes based
+        on weather conditions.
+      </p>
+      <p class="muted">Built for Web & UX Design Sem Exam</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> ClarityWeather • Built for exam</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

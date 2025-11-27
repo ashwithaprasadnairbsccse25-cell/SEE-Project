@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClarityWeather — Welcome</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Extra landing page styling */
+    body {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .start-btn {
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      background: white;
+      color: #0099cc;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .start-btn:hover {
+      background: #e6faff;
+      transform: scale(1.06);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">ClarityWeather</div>
+  <div class="tagline">Your accurate live weather & climate companion</div>
+
+  <button class="start-btn" onclick="window.location.href='weather.html'">
+    Click Here to Check Weather
+  </button>
+
+</body>
+</html>
